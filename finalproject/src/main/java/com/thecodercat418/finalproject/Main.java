@@ -24,7 +24,7 @@ public class Main extends Application{
     public void start(Stage stage) throws IOException {
         Canvas canvas = new Canvas(1000, 1000);
         GraphicsContext gc = canvas.getGraphicsContext2D();
-
+        new CanvasManager(canvas);
         Group g =  new Group(canvas);
         Scene s = new Scene(g,1000,1000);
         s.setOnKeyPressed((key) -> {
@@ -41,13 +41,7 @@ public class Main extends Application{
                 y+=move;
             }
         });
-        new AnimationTimer() {
-            @Override
-            public void handle(long now){
-                draw(gc);
-            }
-        }.start();;
-        draw(gc);
+        
         stage.setTitle("AnimationTimer Demo");
         stage.setScene(s);
         stage.show();

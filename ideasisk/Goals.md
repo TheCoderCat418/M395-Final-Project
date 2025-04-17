@@ -1,0 +1,13 @@
+- [ ] Create basic box moving system
+	- [ ] Character Box
+	- [ ] wasd and updownleftright movement
+	- [ ] Collisions
+- [ ] Create Animation system
+	- [x] Entire system clock
+	- [ ] etc etc
+- [ ] Create interactables
+	- [ ] Have the player pick things up
+	- [ ] and put them down
+	- [ ] Do things using skillchecks
+- [ ] Network Stuff (mutliplayer)
+- [ ] 

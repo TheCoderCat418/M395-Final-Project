@@ -13,28 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Welcome.md",
+                "file": "Goals.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Welcome"
-            }
-          }
-        ]
-      },
-      {
-        "id": "7db9c1ac275963b5",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "b619ff60a6716231",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Graph view"
+              "title": "Goals"
             }
           }
         ]
@@ -186,6 +170,7 @@
   },
   "active": "a42e61aeb975456b",
   "lastOpenFiles": [
+    "Goals.md",
     "Welcome.md"
   ]
 }
