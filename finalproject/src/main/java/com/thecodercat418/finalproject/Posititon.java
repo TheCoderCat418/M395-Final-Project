@@ -1,6 +1,7 @@
 package com.thecodercat418.finalproject;
 
-public class Point {
+public class Posititon{
     int x;
     int y;
+    int z;
 }

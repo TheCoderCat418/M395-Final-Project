@@ -13,7 +13,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -23,24 +22,13 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws IOException {
         Canvas canvas = new Canvas(1000, 1000);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        new CanvasManager(canvas);
         Group g =  new Group(canvas);
         Scene s = new Scene(g,1000,1000);
-        s.setOnKeyPressed((key) -> {
-            if(key.getCode().compareTo(KeyCode.LEFT) == 0){
-                x-=move;
-            }
-            if(key.getCode().compareTo(KeyCode.RIGHT) == 0){
-                x+=move;
-            }
-            if(key.getCode().compareTo(KeyCode.UP) == 0){
-                y-=move;
-            }
-            if(key.getCode().compareTo(KeyCode.DOWN) == 0){
-                y+=move;
-            }
-        });
+        CanvasManager cm = new CanvasManager(canvas);
+        cm.addToCanvas( new Player(s, cm));
+        cm.addToCanvas( new com.thecodercat418.finalproject.Rectangle(750, 750, 1, 100, 100, cm));
+        
+        
         
         stage.setTitle("AnimationTimer Demo");
         stage.setScene(s);
