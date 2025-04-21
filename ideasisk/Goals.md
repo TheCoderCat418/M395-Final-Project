@@ -1,13 +1,14 @@
-- [ ] Create basic box moving system
-	- [ ] Character Box
-	- [ ] wasd and updownleftright movement
-	- [ ] Collisions
-- [ ] Create Animation system
-	- [x] Entire system clock
-	- [ ] etc etc
-- [ ] Create interactables
-	- [ ] Have the player pick things up
-	- [ ] and put them down
-	- [ ] Do things using skillchecks
-- [ ] Network Stuff (mutliplayer)
-- [ ] 
+- [ ] Goal 1: Basic movement system
+	- [x] Character Box
+	- [x] wasd and updownleftright movement
+	- [ ] Collisions and movement walls
+	- [x] Clock update system
+- [ ] Goal 2: Interactions and props
+	- [ ] click e on different objects to do different things
+	- [ ] Create different "tables" 
+	- [ ] Character can pick things up
+	- [ ] ToDo list/ orders
+	- [ ] Skill checks
+- [ ] Goal 3: Finalize game and add content (images)
+- [ ] Goal 4: Network Stuff (mutliplayer)
+- [ ] Goal 5: Extras

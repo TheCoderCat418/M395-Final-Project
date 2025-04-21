@@ -10,8 +10,6 @@ public class Player extends Sprite {
     boolean moveUp = false;
     boolean moveDown = false;
 
-    
-
     public Player(Scene s, CanvasManager cm) {
         super(0, 0, 1, 500, 500, cm);
 
@@ -45,7 +43,7 @@ public class Player extends Sprite {
         });
     }
 
-        @Override
+    @Override
     public void OnScreenUpdate() {
         if (moveDown && !checkCollisions(Direction.DOWN)) {
             move(Direction.DOWN);
@@ -59,10 +57,6 @@ public class Player extends Sprite {
         if (moveRight && !checkCollisions(Direction.RIGHT)) {
             move(Direction.RIGHT);
         }
-        
 
     }
-    }
-
-    
-
+}

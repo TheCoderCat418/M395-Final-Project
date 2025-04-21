@@ -2,17 +2,10 @@ package com.thecodercat418.finalproject;
 
 import java.io.IOException;
 
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventType;
-//import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -37,14 +30,7 @@ public class Main extends Application{
     }
 
     
-    private void draw(GraphicsContext gc) {
-        // Clear the canvas
-        gc.clearRect(0, 0, 1000, 1000);
-
-        // Draw a rectangle
-        gc.setFill(Color.BLUE);
-        gc.fillRect(x, y, 200, 150);
-    }
+    
     public static void main(String[] args) {
         System.out.println("Hello world!");
         launch(args);

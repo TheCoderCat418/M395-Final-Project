@@ -48,7 +48,7 @@ public abstract class Sprite {
         }
     }
 
-    boolean checkCollisions(Direction toMoveIn) {
+    boolean checkCollisions(Direction toMoveIn) { // if direction to move to offends a certain motion, deny it
         int tspeedx = 0;
         int tspeedy = 0;
 
@@ -77,16 +77,32 @@ public abstract class Sprite {
 
             // for (Sprite sa : a) {
             if (!sa.equals(this) && sa.pos.z == this.pos.z) {
-
+                if(toMoveIn.compareTo(Direction.RIGHT) == 0){
                 if (this.pos.x + this.size.x + tspeedx <= sa.pos.x) {
-                    continue;
+                    
                 } else {
-                    System.out.println("d");
+                    safeToMove = false;
                 }
+            }
+                // if (this.pos.y + this.size.y + tspeedy <= sa.pos.y) {
+                    
+                // } else {
+                //     safeToMove = false;
+                // }
+                // if (this.pos.x + this.size.x + tspeedx <= sa.pos.x) {
+                    
+                // } else {
+                //     safeToMove = false;
+                // }
+                // if (this.pos.x + this.size.x + tspeedx <= sa.pos.x) {
+                    
+                // } else {
+                //     safeToMove = false;
+                // }
             } else {
                 continue;
             }
-            safeToMove = false;
+            
 
         }
         return !safeToMove;
