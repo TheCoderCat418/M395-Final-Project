@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Goals.md",
+                "file": "Sources.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Goals"
+              "title": "Sources"
             }
           }
         ]
@@ -171,6 +171,7 @@
   "active": "a42e61aeb975456b",
   "lastOpenFiles": [
     "Goals.md",
+    "Sources.md",
     "Welcome.md"
   ]
 }

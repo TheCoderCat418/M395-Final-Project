@@ -45,18 +45,19 @@ public class Player extends Sprite {
 
     @Override
     public void OnScreenUpdate() {
-        if (moveDown && !checkCollisions(Direction.DOWN)) {
-            move(Direction.DOWN);
+        if (moveDown) {
+            moveActive(Direction.DOWN);
         }
-        if (moveUp && !checkCollisions(Direction.UP)) {
-            move(Direction.UP);
+        if (moveUp) {
+            moveActive(Direction.UP);
         }
-        if (moveLeft && !checkCollisions(Direction.LEFT)) {
-            move(Direction.LEFT);
+        if (moveLeft) {
+            moveActive(Direction.LEFT);
         }
-        if (moveRight && !checkCollisions(Direction.RIGHT)) {
-            move(Direction.RIGHT);
+        if (moveRight) {
+            moveActive(Direction.RIGHT);
         }
+        moveLoop();
 
     }
 }
