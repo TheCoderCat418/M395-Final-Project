@@ -6,6 +6,9 @@ import javafx.scene.paint.Color;
 
 public abstract class Sprite {
 
+    boolean affectedyColl = false;
+    boolean affectedxColl = false;
+
     Posititon pos = new Posititon();
     Posititon size = new Posititon();
     Color color = new Color(1, 0, 0, 1);
@@ -18,7 +21,7 @@ public abstract class Sprite {
 
     int speed = 10;
     Posititon velo = new Posititon();
-    double friction = 0.02;
+    double friction = 0.05;
 
     public Sprite(int x, int y, int layer, int xsize, int ysize, CanvasManager cm) {
         pos.x = x;
@@ -32,11 +35,11 @@ public abstract class Sprite {
     }
 
     void moveLoop() {
-        // System.out.println(velo.x + " " + velo.y);
+        System.out.println(pos.x + " " + pos.y);
         if (velo.x == 0 && velo.y == 0) {
             return;
         }
-        velo = checkCollisions(velo);
+        
         if (Math.abs(velo.x) <= 0.01) {
             velo.x = 0;
         } else {
@@ -47,6 +50,8 @@ public abstract class Sprite {
         } else {
             velo.y -= velo.y * friction;
         }
+        checkCollisions(velo);
+        move(velo);
 
     }
 
@@ -76,30 +81,81 @@ public abstract class Sprite {
 
     }
 
-    Posititon checkCollisions(Posititon direction) { // if direction to move to offends a certain motion,
+    void checkCollisions(Posititon direction) { // if direction to move to offends a certain motion,
                                                      // deny it
-        double tx = direction.x * friction + this.pos.x;
-        double ty = direction.y * friction + this.pos.y;
+       // double tx = direction.x - direction.x * friction + this.pos.x;
+       // double ty = direction.y - direction.y * friction + this.pos.y;
+        double x = direction.x  + this.pos.x;
+        double y = direction.y  + this.pos.y;
+        affectedxColl = false;
+                affectedyColl = false;
         for (Sprite sa : canvasManager.sprites) {
             // Collisions
             // Compute Collision
 
             if (!sa.equals(this) && sa.pos.z == this.pos.z) {
-                System.out.println((tx < sa.pos.x + sa.size.x) + " " + (tx + this.size.x >
-                sa.pos.x) + " " + (ty < sa.pos.y + sa.size.y) + " " + (ty + this.size.y >
-                sa.pos.y) + " : ");
-                if (tx < sa.pos.x + sa.size.x &&
-                        tx + this.size.x > sa.pos.x) {
-                    direction.x = 0;
+                
+                boolean offending = false;
+                if (x < sa.pos.x + sa.size.x &&
+                        x + this.size.x > sa.pos.x && y < sa.pos.y + sa.size.y &&
+                        y + this.size.y > sa.pos.y) {
+                    offending = true;
+
                 }
-                if (ty < sa.pos.y + sa.size.y &&
-                        ty + this.size.y > sa.pos.y) {
-                    direction.y = 0;
+                if (offending) {
+                    
+                    
+                    
+                        // Determine the side of the collision
+                        double overlapLeft = (x + this.size.x) - sa.pos.x; // Right side of this sprite to left side of
+                                                                            // other
+                        double overlapRight = (sa.pos.x + sa.size.x) - x; // Left side of this sprite to right side of
+                                                                           // other
+                        double overlapTop = (y + this.size.y) - sa.pos.y; // Bottom side of this sprite to top side of
+                                                                           // other
+                        double overlapBottom = (sa.pos.y + sa.size.y) - y; // Top side of this sprite to bottom side of
+                                                                            // other
+
+                        // Find the smallest overlap
+                        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
+                                Math.min(overlapTop, overlapBottom));
+
+                        // Adjust the direction based on the smallest overlap
+                        if (minOverlap == overlapLeft && !affectedxColl) {
+                            //direction.x = ;//+ overlapLeft*friction; // Colliding from the right
+                            //this.pos.x += 
+                            direction.x = -overlapLeft + direction.x;
+                            affectedxColl = true;
+                        } else if (minOverlap == overlapRight && !affectedxColl) {
+                            //direction.x = overlapRight;// - overlapRight*friction; // Colliding from the left
+                            //this.pos.x += 
+                            direction.x = overlapRight + direction.x;
+                            affectedxColl = true;
+                        } else if (minOverlap == overlapTop&& !affectedyColl) {
+                            //direction.y = ;//+ overlapTop*friction; // Colliding from below
+                            //this.pos.y += 
+                            direction.y = -overlapTop + direction.y; 
+                            affectedyColl = true;
+                        } else if (minOverlap == overlapBottom&& !affectedyColl) {
+                            //direction.y = overlapBottom;// - overlapBottom*friction; // Colliding from above
+                            //this.pos.y += 
+                            direction.y = overlapBottom + direction.y; 
+                            affectedyColl = true;
+                        }
+
+                        
+                  
+
+                        // You can also return the side of the collision if needed
+                        System.out.println("Collision detected on side: " + (minOverlap == overlapLeft ? "RIGHT"
+                                : minOverlap == overlapRight ? "LEFT" : minOverlap == overlapTop ? "DOWN" : "UP"));
+                    
                 }
+
             }
 
         }
-        return direction;
+        //return direction;
     }
 
     enum Direction {

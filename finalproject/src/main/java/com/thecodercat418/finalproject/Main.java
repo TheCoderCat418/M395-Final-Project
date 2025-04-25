@@ -20,6 +20,8 @@ public class Main extends Application{
         CanvasManager cm = new CanvasManager(canvas);
         cm.addToCanvas( new Player(s, cm));
         cm.addToCanvas( new com.thecodercat418.finalproject.Rectangle(750, 750, 1, 100, 100, cm));
+        cm.addToCanvas( new com.thecodercat418.finalproject.Rectangle(750, 150, 0, 100, 100, cm));
+
         
         
         
