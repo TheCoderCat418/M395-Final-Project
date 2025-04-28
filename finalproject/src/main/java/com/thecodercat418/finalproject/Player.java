@@ -11,7 +11,7 @@ public class Player extends Sprite {
     boolean moveDown = false;
 
     public Player(Scene s, CanvasManager cm) {
-        super(0, 0, 1, 500, 500, cm);
+        super(0, 0, 1, 20, 20, cm);
 
         s.setOnKeyPressed((key) -> {
             if (key.getCode().compareTo(KeyCode.LEFT) == 0) {

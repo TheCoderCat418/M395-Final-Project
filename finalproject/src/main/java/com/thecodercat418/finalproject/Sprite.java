@@ -15,13 +15,21 @@ public abstract class Sprite {
 
     CanvasManager canvasManager;
 
-    boolean hardended = false;
+    boolean canCollide = true; // Will apply correction to collided objects
+    boolean canQuery = true; // Will run OnCollideEnter and OnCollideExit
 
-    public abstract void OnScreenUpdate();
+    public void OnScreenUpdate() {
+    };
+
+    public void OnCollideEnter(Sprite spriteEntered) {
+    };
+
+    public void OnCollideExit(Sprite spriteEntered) {
+    };
 
     int speed = 10;
     Posititon velo = new Posititon();
-    double friction = 0.05;
+    double friction = 0.1;
 
     public Sprite(int x, int y, int layer, int xsize, int ysize, CanvasManager cm) {
         pos.x = x;
@@ -39,7 +47,7 @@ public abstract class Sprite {
         if (velo.x == 0 && velo.y == 0) {
             return;
         }
-        
+
         if (Math.abs(velo.x) <= 0.01) {
             velo.x = 0;
         } else {
@@ -81,20 +89,23 @@ public abstract class Sprite {
 
     }
 
+    ArrayList<Sprite> colSprites = new ArrayList<>();
+
     void checkCollisions(Posititon direction) { // if direction to move to offends a certain motion,
-                                                     // deny it
-       // double tx = direction.x - direction.x * friction + this.pos.x;
-       // double ty = direction.y - direction.y * friction + this.pos.y;
-        double x = direction.x  + this.pos.x;
-        double y = direction.y  + this.pos.y;
+                                                // deny it
+        // double tx = direction.x - direction.x * friction + this.pos.x;
+        // double ty = direction.y - direction.y * friction + this.pos.y;
+        double x = direction.x + this.pos.x;
+        double y = direction.y + this.pos.y;
         affectedxColl = false;
-                affectedyColl = false;
-        for (Sprite sa : canvasManager.sprites) {
+        affectedyColl = false;
+        ArrayList<Sprite> newColSprites = new ArrayList<>();
+        for (Sprite sa : canvasManager.sprites) { //TODO: INDEPENDANT PARTY TO HANDLE COLLISIONS
             // Collisions
             // Compute Collision
 
             if (!sa.equals(this) && sa.pos.z == this.pos.z) {
-                
+
                 boolean offending = false;
                 if (x < sa.pos.x + sa.size.x &&
                         x + this.size.x > sa.pos.x && y < sa.pos.y + sa.size.y &&
@@ -104,58 +115,87 @@ public abstract class Sprite {
                 }
                 if (offending) {
                     
-                    
-                    
-                        // Determine the side of the collision
-                        double overlapLeft = (x + this.size.x) - sa.pos.x; // Right side of this sprite to left side of
-                                                                            // other
-                        double overlapRight = (sa.pos.x + sa.size.x) - x; // Left side of this sprite to right side of
-                                                                           // other
-                        double overlapTop = (y + this.size.y) - sa.pos.y; // Bottom side of this sprite to top side of
-                                                                           // other
-                        double overlapBottom = (sa.pos.y + sa.size.y) - y; // Top side of this sprite to bottom side of
-                                                                            // other
 
-                        // Find the smallest overlap
-                        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
-                                Math.min(overlapTop, overlapBottom));
+                    // Determine the side of the collision
+                    double overlapLeft = (x + this.size.x) - sa.pos.x; // Right side of this sprite to left side of
+                                                                       // other
+                    double overlapRight = (sa.pos.x + sa.size.x) - x; // Left side of this sprite to right side of
+                                                                      // other
+                    double overlapTop = (y + this.size.y) - sa.pos.y; // Bottom side of this sprite to top side of
+                                                                      // other
+                    double overlapBottom = (sa.pos.y + sa.size.y) - y; // Top side of this sprite to bottom side of
+                                                                       // other
 
-                        // Adjust the direction based on the smallest overlap
+                    // Find the smallest overlap
+                    double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
+                            Math.min(overlapTop, overlapBottom));
+
+                    // Adjust the direction based on the smallest overlap
+                    if (sa.canCollide) {
                         if (minOverlap == overlapLeft && !affectedxColl) {
-                            //direction.x = ;//+ overlapLeft*friction; // Colliding from the right
-                            //this.pos.x += 
+                            // direction.x = ;//+ overlapLeft*friction; // Colliding from the right
+                            // this.pos.x +=
                             direction.x = -overlapLeft + direction.x;
                             affectedxColl = true;
                         } else if (minOverlap == overlapRight && !affectedxColl) {
-                            //direction.x = overlapRight;// - overlapRight*friction; // Colliding from the left
-                            //this.pos.x += 
+                            // direction.x = overlapRight;// - overlapRight*friction; // Colliding from the
+                            // left
+                            // this.pos.x +=
                             direction.x = overlapRight + direction.x;
                             affectedxColl = true;
-                        } else if (minOverlap == overlapTop&& !affectedyColl) {
-                            //direction.y = ;//+ overlapTop*friction; // Colliding from below
-                            //this.pos.y += 
-                            direction.y = -overlapTop + direction.y; 
+                        } else if (minOverlap == overlapTop && !affectedyColl) {
+                            // direction.y = ;//+ overlapTop*friction; // Colliding from below
+                            // this.pos.y +=
+                            direction.y = -overlapTop + direction.y;
                             affectedyColl = true;
-                        } else if (minOverlap == overlapBottom&& !affectedyColl) {
-                            //direction.y = overlapBottom;// - overlapBottom*friction; // Colliding from above
-                            //this.pos.y += 
-                            direction.y = overlapBottom + direction.y; 
+                        } else if (minOverlap == overlapBottom && !affectedyColl) {
+                            // direction.y = overlapBottom;// - overlapBottom*friction; // Colliding from
+                            // above
+                            // this.pos.y +=
+                            direction.y = overlapBottom + direction.y;
                             affectedyColl = true;
                         }
+                    }
+                    if(!colSprites.contains(sa)){
+                        if(canQuery){
+                        sa.OnCollideEnter(this);
+                        }
+                        newColSprites.add(sa);
+                    }
 
-                        
-                  
+                    // You can also return the side of the collision if needed
+                    System.out.println("Collision detected on side: " + (minOverlap == overlapLeft ? "RIGHT"
+                            : minOverlap == overlapRight ? "LEFT" : minOverlap == overlapTop ? "DOWN" : "UP"));
 
-                        // You can also return the side of the collision if needed
-                        System.out.println("Collision detected on side: " + (minOverlap == overlapLeft ? "RIGHT"
-                                : minOverlap == overlapRight ? "LEFT" : minOverlap == overlapTop ? "DOWN" : "UP"));
-                    
                 }
+                // colSprites -> Sprites currently colliding since last check
+                // newColSprites -> scan of sprites to be updated to colSprites
+
+                //sa current sprite checking
+                
 
             }
 
         }
-        //return direction;
+
+                for (int ij = colSprites.size() - 1; ij >= 0; ij++) {
+                    for (int i = newColSprites.size() - 1; i >= 0; i++) {
+                        if (colSprites.get(ij).equals(newColSprites.get(i))) {
+                            colSprites.remove(ij);
+                        }
+                    }
+                }
+                // for (Sprite sp : newColSprites) {// new colliding sprites
+                //     colSprites.add(sp);
+                //     OnCollideEnter(sp);
+                // }
+                for (int ij = colSprites.size() - 1; ij > 0; ij++) {// remove non existing colliding sprites
+                    colSprites.remove(ij).OnCollideExit(this);
+                    
+                }
+
+            
+        // return direction;
     }
 
     enum Direction {

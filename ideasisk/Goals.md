@@ -1,14 +1,30 @@
-- [ ] Goal 1: Basic movement system
+- [x] Goal 1: Basic movement system
 	- [x] Character Box
 	- [x] wasd and updownleftright movement
-	- [ ] Collisions and movement walls
+	- [x] Collisions and movement walls
 	- [x] Clock update system
 - [ ] Goal 2: Interactions and props
-	- [ ] click e on different objects to do different things
-	- [ ] Create different "tables" 
-	- [ ] Character can pick things up
-	- [ ] ToDo list/ orders
-	- [ ] Skill checks
+	- [ ] Create system to only detect collisions 
+	- [ ] Create Fryer
+	- [ ] Create Holding Area / Countertop
+	- [ ] Create Heated counter top
+	- [ ] Create Knife
+	- [ ] Create Blender
+	- [ ] Create Oven
+	- [ ] Player can only one object
+	- [ ] Create Basic food
+	- [ ] Create interactable to have skill checks
+	- [ ] Order list
+	- [ ] Create UI Layer
 - [ ] Goal 3: Finalize game and add content (images)
+	- [ ] Add images
+	- [ ] Add Animations
+	- [ ] Add Timer
+	- [ ] Add Score
+	- [ ] 
 - [ ] Goal 4: Network Stuff (mutliplayer)
+	- [ ] Sync both renderers
+	- [ ] Blend ping time
+	- [ ] Send movement data
+	- [ ] 
 - [ ] Goal 5: Extras
