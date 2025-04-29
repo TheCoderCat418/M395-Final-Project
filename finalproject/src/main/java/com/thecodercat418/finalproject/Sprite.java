@@ -100,7 +100,7 @@ public abstract class Sprite {
         affectedxColl = false;
         affectedyColl = false;
         ArrayList<Sprite> newColSprites = new ArrayList<>();
-        for (Sprite sa : canvasManager.sprites) { //TODO: INDEPENDANT PARTY TO HANDLE COLLISIONS
+        for (Sprite sa : canvasManager.sprites) { // TODO: INDEPENDANT PARTY TO HANDLE COLLISIONS
             // Collisions
             // Compute Collision
 
@@ -114,8 +114,7 @@ public abstract class Sprite {
 
                 }
                 if (offending) {
-                    
-
+                    newColSprites.clear();
                     // Determine the side of the collision
                     double overlapLeft = (x + this.size.x) - sa.pos.x; // Right side of this sprite to left side of
                                                                        // other
@@ -156,9 +155,9 @@ public abstract class Sprite {
                             affectedyColl = true;
                         }
                     }
-                    if(!colSprites.contains(sa)){
-                        if(canQuery){
-                        sa.OnCollideEnter(this);
+                    if (!colSprites.contains(sa)) {
+                        if (canQuery) {
+                            sa.OnCollideEnter(this);
                         }
                         newColSprites.add(sa);
                     }
@@ -171,30 +170,30 @@ public abstract class Sprite {
                 // colSprites -> Sprites currently colliding since last check
                 // newColSprites -> scan of sprites to be updated to colSprites
 
-                //sa current sprite checking
-                
+                // sa current sprite checking
 
             }
 
         }
 
-                for (int ij = colSprites.size() - 1; ij >= 0; ij++) {
-                    for (int i = newColSprites.size() - 1; i >= 0; i++) {
-                        if (colSprites.get(ij).equals(newColSprites.get(i))) {
-                            colSprites.remove(ij);
-                        }
-                    }
+        for (int ij = colSprites.size() - 1; ij >=0; ij--) {
+            boolean a = false;
+            for (int i = newColSprites.size() - 1; i >= 0; i--) {
+                if (colSprites.get(ij).equals(newColSprites.get(i))) {
+                    newColSprites.remove(i);// Remove non new
+                    a = true;
                 }
-                // for (Sprite sp : newColSprites) {// new colliding sprites
-                //     colSprites.add(sp);
-                //     OnCollideEnter(sp);
-                // }
-                for (int ij = colSprites.size() - 1; ij > 0; ij++) {// remove non existing colliding sprites
-                    colSprites.remove(ij).OnCollideExit(this);
-                    
-                }
+            }
+            if(!a){
+            colSprites.remove(ij).OnCollideExit(this);
+            }
+        }
+        for (Sprite sp : newColSprites) {// new colliding sprites
+            colSprites.add(sp);
 
-            
+            // OnCollideEnter(sp);
+        }
+        
         // return direction;
     }
 
