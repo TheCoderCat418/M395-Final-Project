@@ -6,7 +6,7 @@
   - [x] Collisions and movement walls
   - [x] Clock update system
 - [ ] Goal 2: Interactions and props
-  - [ ] Create system to only detect collisions
+  - [x] Create system to only detect collisions
   - [ ] Create Fryer
   - [ ] Create Holding Area / Countertop
   - [ ] Create Heated counter top

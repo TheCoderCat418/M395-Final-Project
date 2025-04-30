@@ -48,12 +48,12 @@ public abstract class Sprite {
             return;
         }
 
-        if (Math.abs(velo.x) <= 0.01) {
+        if (Math.abs(velo.x) <= 0.0001) {
             velo.x = 0;
         } else {
             velo.x -= velo.x * friction;
         }
-        if (Math.abs(velo.y) <= 0.01) {
+        if (Math.abs(velo.y) <= 0.0001) {
             velo.y = 0;
         } else {
             velo.y -= velo.y * friction;
@@ -90,11 +90,12 @@ public abstract class Sprite {
     }
 
     ArrayList<Sprite> colSprites = new ArrayList<>();
+    
 
     void checkCollisions(Posititon direction) { // if direction to move to offends a certain motion,
                                                 // deny it
         // double tx = direction.x - direction.x * friction + this.pos.x;
-        // double ty = direction.y - direction.y * friction + this.pos.y;
+        // double ty = drection.y - direction.y * friction + this.pos.y;
         double x = direction.x + this.pos.x;
         double y = direction.y + this.pos.y;
         affectedxColl = false;
@@ -114,7 +115,7 @@ public abstract class Sprite {
 
                 }
                 if (offending) {
-                    newColSprites.clear();
+                    
                     // Determine the side of the collision
                     double overlapLeft = (x + this.size.x) - sa.pos.x; // Right side of this sprite to left side of
                                                                        // other
@@ -155,12 +156,7 @@ public abstract class Sprite {
                             affectedyColl = true;
                         }
                     }
-                    if (!colSprites.contains(sa)) {
-                        if (canQuery) {
-                            sa.OnCollideEnter(this);
-                        }
-                        newColSprites.add(sa);
-                    }
+                    newColSprites.add(sa);
 
                     // You can also return the side of the collision if needed
                     System.out.println("Collision detected on side: " + (minOverlap == overlapLeft ? "RIGHT"
@@ -171,28 +167,41 @@ public abstract class Sprite {
                 // newColSprites -> scan of sprites to be updated to colSprites
 
                 // sa current sprite checking
+                
+                
 
             }
 
         }
-
-        for (int ij = colSprites.size() - 1; ij >=0; ij--) {
-            boolean a = false;
-            for (int i = newColSprites.size() - 1; i >= 0; i--) {
-                if (colSprites.get(ij).equals(newColSprites.get(i))) {
-                    newColSprites.remove(i);// Remove non new
-                    a = true;
+        for(int i = newColSprites.size()-1; i>=0;i--){
+            boolean foundInOldScan = false;
+            for(int j = colSprites.size()-1;j>=0;j--){
+                if(colSprites.get(j).equals(newColSprites.get(i))){
+                    foundInOldScan = true;
                 }
             }
-            if(!a){
-            colSprites.remove(ij).OnCollideExit(this);
+            if(!foundInOldScan){
+                colSprites.add(newColSprites.get(i));
+                OnCollideEnter(newColSprites.get(i));
             }
         }
-        for (Sprite sp : newColSprites) {// new colliding sprites
-            colSprites.add(sp);
 
-            // OnCollideEnter(sp);
+        for(int i = colSprites.size()-1; i>=0;i--){
+            boolean foundInNewScan = false;
+            for(int j = newColSprites.size()-1;j>=0;j--){
+                if(colSprites.get(i).equals(newColSprites.get(j))){
+                    foundInNewScan = true;
+                }
+            }
+            if(!foundInNewScan){
+                OnCollideExit(colSprites.remove(i));
+            }
         }
+
+
+
+
+        
         
         // return direction;
     }
