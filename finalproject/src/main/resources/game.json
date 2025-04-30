@@ -1,0 +1,8 @@
+{
+    "recipes": [
+        {"inputs": {
+            "name": "ex",
+            "image": "a"
+        }}
+    ]
+}

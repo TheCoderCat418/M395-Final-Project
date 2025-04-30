@@ -63,7 +63,7 @@ public abstract class Sprite {
 
     }
 
-    void moveActive(Direction d) {
+    void moveActive(Direction d) { //add slow start
         switch (d) {
             case UP:
                 velo.y = -speed;
@@ -117,20 +117,14 @@ public abstract class Sprite {
                 if (offending) {
                     
                     // Determine the side of the collision
-                    double overlapLeft = (x + this.size.x) - sa.pos.x; // Right side of this sprite to left side of
-                                                                       // other
-                    double overlapRight = (sa.pos.x + sa.size.x) - x; // Left side of this sprite to right side of
-                                                                      // other
-                    double overlapTop = (y + this.size.y) - sa.pos.y; // Bottom side of this sprite to top side of
-                                                                      // other
-                    double overlapBottom = (sa.pos.y + sa.size.y) - y; // Top side of this sprite to bottom side of
-                                                                       // other
+                    double overlapLeft = (x + this.size.x) - sa.pos.x; 
+                    double overlapRight = (sa.pos.x + sa.size.x) - x; 
+                    double overlapTop = (y + this.size.y) - sa.pos.y; 
+                    double overlapBottom = (sa.pos.y + sa.size.y) - y; 
 
-                    // Find the smallest overlap
                     double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
                             Math.min(overlapTop, overlapBottom));
 
-                    // Adjust the direction based on the smallest overlap
                     if (sa.canCollide) {
                         if (minOverlap == overlapLeft && !affectedxColl) {
                             // direction.x = ;//+ overlapLeft*friction; // Colliding from the right

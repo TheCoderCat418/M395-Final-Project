@@ -45,6 +45,7 @@ public class CanvasManager {
         for (Sprite s : a) {
             gc.setFill(s.color);
             gc.fillRect(s.pos.x, s.pos.y, s.size.x, s.size.y);
+            
         }
     }
 
