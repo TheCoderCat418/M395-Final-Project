@@ -11,7 +11,7 @@ public class Player extends Sprite {
     boolean moveDown = false;
 
     public Player(Scene s, CanvasManager cm) {
-        super(0, 0, 1, 20, 20, cm);
+        super(0, 0, 1, 100, 100, cm);
 
         s.setOnKeyPressed((key) -> {
             if (key.getCode().compareTo(KeyCode.LEFT) == 0) {
@@ -25,6 +25,10 @@ public class Player extends Sprite {
             }
             if (key.getCode().compareTo(KeyCode.DOWN) == 0) {
                 moveDown = true;
+            }
+            if (key.getCode().compareTo(KeyCode.E) == 0) {
+                //Search for colliding E accessable objects
+                findAndTriggerInteraction();
             }
         });
         s.setOnKeyReleased((key) -> {
@@ -41,6 +45,15 @@ public class Player extends Sprite {
                 moveDown = false;
             }
         });
+    }
+
+    public void findAndTriggerInteraction(){
+        for(Sprite s : colSprites){
+            if(s instanceof Interactable){
+                ((Interactable)s).interact(this);
+                return;
+            }
+        }
     }
 
     @Override

@@ -43,7 +43,7 @@ public abstract class Sprite {
     }
 
     void moveLoop() {
-        System.out.println(pos.x + " " + pos.y);
+        System.out.println(velo.x + " " + velo.y);
         if (velo.x == 0 && velo.y == 0) {
             return;
         }
@@ -63,23 +63,36 @@ public abstract class Sprite {
 
     }
 
-    void moveActive(Direction d) { //add slow start
+    void moveActive(Direction d) { //5 needs to be varable. inital speed (speed/5) MUST be closer to zero than |5|. That is the spacing
         switch (d) {
             case UP:
-                velo.y = -speed;
+                velo.y += -speed/5;
+                if(velo.y<-speed){
+                    velo.y = -speed;
+                }
                 break;
             case DOWN:
-                velo.y = speed;
+                velo.y += speed/5;
+                if(velo.y>speed){
+                    velo.y = speed;
+                }
                 break;
             case LEFT:
-                velo.x = -speed;
+                velo.x += -speed/5;
+                if(velo.x<-speed){
+                    velo.x = -speed;
+                }
                 break;
             case RIGHT:
-                velo.x = speed;
+                velo.x += speed/5;
+                if(velo.x>speed){
+                    velo.x = speed;
+                }
                 break;
             default:
                 break;
         }
+
 
     }
 

@@ -2,10 +2,13 @@ package com.thecodercat418.finalproject;
 
 import java.io.IOException;
 
+import com.thecodercat418.finalproject.Interactable.InteractionRunner;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -19,11 +22,17 @@ public class Main extends Application{
         Scene s = new Scene(g,1000,1000);
         CanvasManager cm = new CanvasManager(canvas);
         cm.addToCanvas( new Player(s, cm));
-        cm.addToCanvas( new com.thecodercat418.finalproject.Rectangle(750, 750, 1, 100, 100, cm));
-        Rectangle r = new Rectangle(750, 150, 1, 100, 100, cm);
-        r.canCollide = false;
+        cm.addToCanvas( new Rectangle(750, 750, 1, 100, 100, cm));
+        Rectangle r = new Rectangle(250, 0, 1, 250, 250, cm);
+        //r.canCollide = false;
+        r.color = new Color(1, 0, 0, 0.25);
         cm.addToCanvas( r);
-
+        InteractionRunner ir = (i, spr) -> {
+            
+            System.out.println("interacted");
+        };
+        Interactable t = new Interactable(255, 0, 1, 240, 275, cm, ir);
+        cm.addToCanvas(t);
         
         
         

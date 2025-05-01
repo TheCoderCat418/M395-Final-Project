@@ -15,7 +15,7 @@
   - [ ] Create Oven
   - [ ] Player can only one object
   - [ ] Create Basic food
-  - [ ] Create interactable to have skill checks
+  - [x] Create interactable to have skill checks
   - [ ] Order list
   - [ ] Create UI Layer
 - [ ] Goal 3: Finalize game and add content (images)
@@ -26,5 +26,5 @@
   - [ ] Add Levels
   - [ ] Add Sound
 - [ ] Goal 4: Local Multiplayer (keyboard)
-	- [ ] More than one player object
-	- [ ] All functions work with other player
+  - [ ] More than one player object
+  - [ ] All functions work with other player
