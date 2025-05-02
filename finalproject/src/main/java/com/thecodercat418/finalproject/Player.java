@@ -27,7 +27,7 @@ public class Player extends Sprite {
                 moveDown = true;
             }
             if (key.getCode().compareTo(KeyCode.E) == 0) {
-                //Search for colliding E accessable objects
+                // Search for colliding E accessable objects
                 findAndTriggerInteraction();
             }
         });
@@ -47,10 +47,10 @@ public class Player extends Sprite {
         });
     }
 
-    public void findAndTriggerInteraction(){
-        for(Sprite s : colSprites){
-            if(s instanceof Interactable){
-                ((Interactable)s).interact(this);
+    public void findAndTriggerInteraction() {
+        for (Sprite s : colSprites) {
+            if (s instanceof Interactable) {
+                ((Interactable) s).interact(this);
                 return;
             }
         }

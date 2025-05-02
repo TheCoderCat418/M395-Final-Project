@@ -25,6 +25,6 @@
   - [ ] Add Score
   - [ ] Add Levels
   - [ ] Add Sound
-- [ ] Goal 4: Local Multiplayer (keyboard)
+- [ ] Goal 4: Local Multiplayer (same keyboard)
   - [ ] More than one player object
   - [ ] All functions work with other player

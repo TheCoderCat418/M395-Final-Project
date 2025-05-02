@@ -63,36 +63,36 @@ public abstract class Sprite {
 
     }
 
-    void moveActive(Direction d) { //5 needs to be varable. inital speed (speed/5) MUST be closer to zero than |5|. That is the spacing
+    void moveActive(Direction d) { // 5 needs to be varable. inital speed (speed/5) MUST be closer to zero than
+                                   // |5|. That is the spacing
         switch (d) {
             case UP:
-                velo.y += -speed/5;
-                if(velo.y<-speed){
+                velo.y += -speed / 5;
+                if (velo.y < -speed) {
                     velo.y = -speed;
                 }
                 break;
             case DOWN:
-                velo.y += speed/5;
-                if(velo.y>speed){
+                velo.y += speed / 5;
+                if (velo.y > speed) {
                     velo.y = speed;
                 }
                 break;
             case LEFT:
-                velo.x += -speed/5;
-                if(velo.x<-speed){
+                velo.x += -speed / 5;
+                if (velo.x < -speed) {
                     velo.x = -speed;
                 }
                 break;
             case RIGHT:
-                velo.x += speed/5;
-                if(velo.x>speed){
+                velo.x += speed / 5;
+                if (velo.x > speed) {
                     velo.x = speed;
                 }
                 break;
             default:
                 break;
         }
-
 
     }
 
@@ -103,7 +103,6 @@ public abstract class Sprite {
     }
 
     ArrayList<Sprite> colSprites = new ArrayList<>();
-    
 
     void checkCollisions(Posititon direction) { // if direction to move to offends a certain motion,
                                                 // deny it
@@ -128,12 +127,12 @@ public abstract class Sprite {
 
                 }
                 if (offending) {
-                    
+
                     // Determine the side of the collision
-                    double overlapLeft = (x + this.size.x) - sa.pos.x; 
-                    double overlapRight = (sa.pos.x + sa.size.x) - x; 
-                    double overlapTop = (y + this.size.y) - sa.pos.y; 
-                    double overlapBottom = (sa.pos.y + sa.size.y) - y; 
+                    double overlapLeft = (x + this.size.x) - sa.pos.x;
+                    double overlapRight = (sa.pos.x + sa.size.x) - x;
+                    double overlapTop = (y + this.size.y) - sa.pos.y;
+                    double overlapBottom = (sa.pos.y + sa.size.y) - y;
 
                     double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
                             Math.min(overlapTop, overlapBottom));
@@ -174,42 +173,35 @@ public abstract class Sprite {
                 // newColSprites -> scan of sprites to be updated to colSprites
 
                 // sa current sprite checking
-                
-                
 
             }
 
         }
-        for(int i = newColSprites.size()-1; i>=0;i--){
+        for (int i = newColSprites.size() - 1; i >= 0; i--) {
             boolean foundInOldScan = false;
-            for(int j = colSprites.size()-1;j>=0;j--){
-                if(colSprites.get(j).equals(newColSprites.get(i))){
+            for (int j = colSprites.size() - 1; j >= 0; j--) {
+                if (colSprites.get(j).equals(newColSprites.get(i))) {
                     foundInOldScan = true;
                 }
             }
-            if(!foundInOldScan){
+            if (!foundInOldScan) {
                 colSprites.add(newColSprites.get(i));
                 OnCollideEnter(newColSprites.get(i));
             }
         }
 
-        for(int i = colSprites.size()-1; i>=0;i--){
+        for (int i = colSprites.size() - 1; i >= 0; i--) {
             boolean foundInNewScan = false;
-            for(int j = newColSprites.size()-1;j>=0;j--){
-                if(colSprites.get(i).equals(newColSprites.get(j))){
+            for (int j = newColSprites.size() - 1; j >= 0; j--) {
+                if (colSprites.get(i).equals(newColSprites.get(j))) {
                     foundInNewScan = true;
                 }
             }
-            if(!foundInNewScan){
+            if (!foundInNewScan) {
                 OnCollideExit(colSprites.remove(i));
             }
         }
 
-
-
-
-        
-        
         // return direction;
     }
 

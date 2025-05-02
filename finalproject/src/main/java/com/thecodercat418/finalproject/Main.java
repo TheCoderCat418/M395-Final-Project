@@ -11,39 +11,35 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Main extends Application{
+public class Main extends Application {
     int x = 0;
     int y = 0;
- int move = 1;
+    int move = 1;
+
     @Override
     public void start(Stage stage) throws IOException {
         Canvas canvas = new Canvas(1000, 1000);
-        Group g =  new Group(canvas);
-        Scene s = new Scene(g,1000,1000);
+        Group g = new Group(canvas);
+        Scene s = new Scene(g, 1000, 1000);
         CanvasManager cm = new CanvasManager(canvas);
-        cm.addToCanvas( new Player(s, cm));
-        cm.addToCanvas( new Rectangle(750, 750, 1, 100, 100, cm));
+        cm.addToCanvas(new Player(s, cm));
+        cm.addToCanvas(new Rectangle(750, 750, 1, 100, 100, cm));
         Rectangle r = new Rectangle(250, 0, 1, 250, 250, cm);
-        //r.canCollide = false;
+        // r.canCollide = false;
         r.color = new Color(1, 0, 0, 0.25);
-        cm.addToCanvas( r);
+        cm.addToCanvas(r);
         InteractionRunner ir = (i, spr) -> {
-            
             System.out.println("interacted");
         };
         Interactable t = new Interactable(255, 0, 1, 240, 275, cm, ir);
         cm.addToCanvas(t);
-        
-        
-        
+
         stage.setTitle("AnimationTimer Demo");
         stage.setScene(s);
         stage.show();
-        
+
     }
 
-    
-    
     public static void main(String[] args) {
         System.out.println("Hello world!");
         launch(args);

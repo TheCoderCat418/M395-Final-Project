@@ -2,7 +2,7 @@ package com.thecodercat418.finalproject;
 
 import javafx.scene.paint.Color;
 
-public class Interactable extends Sprite{
+public class Interactable extends Sprite {
 
     InteractionRunner runner;
 
@@ -13,12 +13,12 @@ public class Interactable extends Sprite{
         color = new Color(0, 1, 0, 0.25);
     }
 
-    public void interact(Sprite interactedSprite){
+    public void interact(Sprite interactedSprite) {
         runner.interact(this, interactedSprite);
     }
 
     public interface InteractionRunner {
         void interact(Interactable i, Sprite interactedSprite);
     }
-    
+
 }

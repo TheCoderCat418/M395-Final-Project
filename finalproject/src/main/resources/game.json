@@ -2,7 +2,8 @@
     "recipes": [
         {"inputs": {
             "name": "ex",
-            "image": "a"
+            "image": "a",
+            "a": "B"
         }}
     ]
 }

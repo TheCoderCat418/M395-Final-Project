@@ -11,27 +11,27 @@ public class ClockEntity {
         this.clkdivide = clkdivide;
     }
 
-    public void clockCycle(long now){
+    public void clockCycle(long now) {
         clkcount++;
-        if(clkdivide<=clkcount){
+        if (clkdivide <= clkcount) {
             clkcount = 0;
             cc.onClockPassed();
         }
     }
 
-    public boolean isRunning(){
+    public boolean isRunning() {
         return running;
     }
 
-    public void setRunning(boolean running){
+    public void setRunning(boolean running) {
         this.running = running;
     }
 
-    public void setClockDivide(int divide){
+    public void setClockDivide(int divide) {
         this.clkdivide = divide;
     }
 
-    public int getClockDivide(){
+    public int getClockDivide() {
         return clkdivide;
     }
 

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 public class CanvasManager {
     public Canvas canvas;
@@ -42,12 +40,12 @@ public class CanvasManager {
         }
         for (ArrayList<Sprite> a : layers) {
 
-        for (Sprite s : a) {
-            gc.setFill(s.color);
-            gc.fillRect(s.pos.x, s.pos.y, s.size.x, s.size.y);
-            
+            for (Sprite s : a) {
+                gc.setFill(s.color);
+                gc.fillRect(s.pos.x, s.pos.y, s.size.x, s.size.y);
+
+            }
         }
-    }
 
     }
 
