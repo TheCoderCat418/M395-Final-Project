@@ -1,9 +1,13 @@
 package com.thecodercat418.finalproject;
 
+import com.thecodercat418.finalproject.Food.Food;
+
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
 public class Player extends Sprite {
+
+    public Food held;
 
     boolean moveRight = false;
     boolean moveLeft = false;
@@ -50,7 +54,7 @@ public class Player extends Sprite {
     public void findAndTriggerInteraction() {
         for (Sprite s : colSprites) {
             if (s instanceof Interactable) {
-                ((Interactable) s).interact(this);
+                ((Interactable) s).interacted(this);
                 return;
             }
         }

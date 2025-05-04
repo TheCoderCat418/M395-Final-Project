@@ -2,7 +2,8 @@ package com.thecodercat418.finalproject;
 
 import java.io.IOException;
 
-import com.thecodercat418.finalproject.Interactable.InteractionRunner;
+import com.thecodercat418.finalproject.Food.FoodGiver;
+import com.thecodercat418.finalproject.Food.TrashCan;
 
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -28,11 +29,10 @@ public class Main extends Application {
         // r.canCollide = false;
         r.color = new Color(1, 0, 0, 0.25);
         cm.addToCanvas(r);
-        InteractionRunner ir = (i, spr) -> {
-            System.out.println("interacted");
-        };
-        Interactable t = new Interactable(255, 0, 1, 240, 275, cm, ir);
+        FoodGiver t = new FoodGiver(255, 0, 1, 240, 275, cm);
         cm.addToCanvas(t);
+        TrashCan ta = new TrashCan(755, 0, 1, 240, 275, cm);
+        cm.addToCanvas(ta);
 
         stage.setTitle("AnimationTimer Demo");
         stage.setScene(s);
