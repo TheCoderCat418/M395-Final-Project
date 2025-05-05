@@ -13,7 +13,7 @@ public class FoodTranslator extends Interactable {
     
     Recipe r;
     int timeBeforeDispence = 0;
-    //Skill Checks
+    SkillCheck sk;
 
     @Override
     public void interacted(Sprite interactedSprite) {
