@@ -14,7 +14,7 @@ public class CanvasManager {
     public ArrayList<Sprite> sprites = new ArrayList<>();
 
     public CanvasManager(Canvas canvas) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             layers.add(new ArrayList<Sprite>());
         }
         this.canvas = canvas;

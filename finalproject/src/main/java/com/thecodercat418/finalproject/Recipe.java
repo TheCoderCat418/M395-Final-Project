@@ -1,4 +1,4 @@
-package com.thecodercat418.finalproject.Food;
+package com.thecodercat418.finalproject;
 
 import java.util.LinkedHashMap;
 

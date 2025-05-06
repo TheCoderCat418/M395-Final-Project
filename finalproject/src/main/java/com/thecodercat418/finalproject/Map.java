@@ -1,8 +1,6 @@
-package com.thecodercat418.finalproject.Food;
+package com.thecodercat418.finalproject;
 
 import java.util.ArrayList;
-
-import com.thecodercat418.finalproject.Sprite;
 
 public class Map {
     private ArrayList<Sprite> spritesOnMap = new ArrayList<>();

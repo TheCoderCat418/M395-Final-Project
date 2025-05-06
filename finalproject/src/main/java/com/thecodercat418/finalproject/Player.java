@@ -1,7 +1,5 @@
 package com.thecodercat418.finalproject;
 
-import com.thecodercat418.finalproject.Food.Food;
-
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 
@@ -16,8 +14,7 @@ public class Player extends Sprite {
 
     public Player(Scene s, CanvasManager cm) {
         super(0, 0, 1, 100, 100, cm);
-
-        s.setOnKeyPressed((key) -> {
+        InputManager.addToPressed((key) -> {
             if (key.getCode().compareTo(KeyCode.LEFT) == 0) {
                 moveLeft = true;
             }
@@ -35,7 +32,9 @@ public class Player extends Sprite {
                 findAndTriggerInteraction();
             }
         });
-        s.setOnKeyReleased((key) -> {
+
+        InputManager.addToReleased((key) -> {
+
             if (key.getCode().compareTo(KeyCode.LEFT) == 0) {
                 moveLeft = false;
             }
@@ -50,7 +49,9 @@ public class Player extends Sprite {
             }
         });
     }
-
+    public Player(int x, int y, int xsize, int ysize, int layer, CanvasManager cm){
+        super(0, 0, 1, 100, 100, cm);
+    }
     public void findAndTriggerInteraction() {
         for (Sprite s : colSprites) {
             if (s instanceof Interactable) {

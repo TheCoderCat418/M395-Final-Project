@@ -1,8 +1,4 @@
-package com.thecodercat418.finalproject.Food;
-
-import com.thecodercat418.finalproject.CanvasManager;
-import com.thecodercat418.finalproject.Interactable;
-import com.thecodercat418.finalproject.Sprite;
+package com.thecodercat418.finalproject;
 
 public class FoodTranslator extends Interactable {
 

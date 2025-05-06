@@ -1,7 +1,7 @@
 package com.thecodercat418.finalproject;
 
 public class Posititon {
-    double x;
-    double y;
-    int z;
+    public double x;
+    public double y;
+    public int z;
 }

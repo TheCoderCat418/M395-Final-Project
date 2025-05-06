@@ -2,9 +2,6 @@ package com.thecodercat418.finalproject;
 
 import java.io.IOException;
 
-import com.thecodercat418.finalproject.Food.FoodGiver;
-import com.thecodercat418.finalproject.Food.TrashCan;
-
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,8 +19,9 @@ public class Main extends Application {
         Canvas canvas = new Canvas(1000, 1000);
         Group g = new Group(canvas);
         Scene s = new Scene(g, 1000, 1000);
+        InputManager.clockStart(s);
         CanvasManager cm = new CanvasManager(canvas);
-        cm.addToCanvas(new Player(s, cm));
+        //cm.addToCanvas(new Player(s, cm));
         cm.addToCanvas(new Rectangle(750, 750, 1, 100, 100, cm));
         Rectangle r = new Rectangle(250, 0, 1, 250, 250, cm);
         // r.canCollide = false;
@@ -37,6 +35,13 @@ public class Main extends Application {
         stage.setTitle("AnimationTimer Demo");
         stage.setScene(s);
         stage.show();
+
+
+
+
+
+        SkillCheck sk = new SkillCheck(cm);
+        cm.addToCanvas(sk);
 
     }
 

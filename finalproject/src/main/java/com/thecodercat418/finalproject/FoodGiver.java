@@ -1,9 +1,4 @@
-package com.thecodercat418.finalproject.Food;
-
-import com.thecodercat418.finalproject.CanvasManager;
-import com.thecodercat418.finalproject.Interactable;
-import com.thecodercat418.finalproject.Player;
-import com.thecodercat418.finalproject.Sprite;
+package com.thecodercat418.finalproject;
 
 public class FoodGiver extends Interactable {
     public FoodGiver(int x, int y, int layer, int xsize, int ysize, CanvasManager cm) {

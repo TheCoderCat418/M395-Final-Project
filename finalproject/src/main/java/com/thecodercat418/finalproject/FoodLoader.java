@@ -1,4 +1,4 @@
-package com.thecodercat418.finalproject.Food;
+package com.thecodercat418.finalproject;
 
 public class FoodLoader {
     // Get game details from a file
