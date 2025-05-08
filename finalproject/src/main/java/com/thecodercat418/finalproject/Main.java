@@ -21,7 +21,7 @@ public class Main extends Application {
         Scene s = new Scene(g, 1000, 1000);
         InputManager.clockStart(s);
         CanvasManager cm = new CanvasManager(canvas);
-        //cm.addToCanvas(new Player(s, cm));
+        cm.addToCanvas(new Player(s, cm));
         cm.addToCanvas(new Rectangle(750, 750, 1, 100, 100, cm));
         Rectangle r = new Rectangle(250, 0, 1, 250, 250, cm);
         // r.canCollide = false;
@@ -40,8 +40,8 @@ public class Main extends Application {
 
 
 
-        SkillCheck sk = new SkillCheck(cm);
-        cm.addToCanvas(sk);
+        // SkillCheck sk = new SkillCheck(cm);
+        // cm.addToCanvas(sk);
 
     }
 
