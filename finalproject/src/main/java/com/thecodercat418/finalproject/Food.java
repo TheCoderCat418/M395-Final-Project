@@ -4,6 +4,13 @@ import javafx.scene.image.Image;
 
 public class Food {
     String name;
-    int heat = 0;
     Image image = null;
+
+    public Food(String name, Image image){
+        this.name = name;
+        this.image = image;
+    }
+    public Food(String name){
+        this.name = name;
+    }
 }
