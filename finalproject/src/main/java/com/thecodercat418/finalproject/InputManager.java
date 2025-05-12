@@ -2,7 +2,6 @@ package com.thecodercat418.finalproject;
 
 import java.util.ArrayList;
 
-import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 

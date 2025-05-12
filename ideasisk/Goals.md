@@ -7,13 +7,13 @@
   - [x] Clock update system
 - [ ] Goal 2: Interactions and props
   - [x] Create system to only detect collisions
-  - [ ] Create Fryer
+  - [x] Create Fryer
   - [ ] Create Holding Area / Countertop
-  - [ ] Create Heated counter top
-  - [ ] Create Knife
-  - [ ] Create Blender
-  - [ ] Create Oven
-  - [ ] Player can only one object
+  - [x] Create Heated counter top
+  - [x] Create Knife
+  - [x] Create Blender
+  - [x] Create Oven
+  - [x] Player can only one object
   - [ ] Create Basic food
   - [x] Create interactable to have skill checks
   - [ ] Order list

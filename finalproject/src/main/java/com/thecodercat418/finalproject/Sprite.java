@@ -18,6 +18,8 @@ public abstract class Sprite {
     boolean canCollide = true; // Will apply correction to collided objects
     boolean canQuery = true; // Will run OnCollideEnter and OnCollideExit
 
+    ArrayList<Sprite> children = new ArrayList<>();
+
     public void OnScreenUpdate() {
     };
 

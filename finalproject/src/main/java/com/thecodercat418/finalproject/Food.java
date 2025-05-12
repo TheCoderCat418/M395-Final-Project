@@ -10,7 +10,7 @@ public class Food {
         this.name = name;
         this.image = image;
     }
-    public Food(String name){
-        this.name = name;
-    }
+    // public Food(String name){
+    //     this.name = name;
+    // }
 }
