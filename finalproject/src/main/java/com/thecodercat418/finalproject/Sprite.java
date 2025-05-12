@@ -2,12 +2,15 @@ package com.thecodercat418.finalproject;
 
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public abstract class Sprite {
 
     boolean affectedyColl = false;
     boolean affectedxColl = false;
+
+    Image image = null;
 
     Posititon pos = new Posititon();
     Posititon size = new Posititon();

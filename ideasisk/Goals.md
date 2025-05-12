@@ -5,19 +5,19 @@
   - [x] wasd and updownleftright movement
   - [x] Collisions and movement walls
   - [x] Clock update system
-- [ ] Goal 2: Interactions and props
+- [x] Goal 2: Interactions and props
   - [x] Create system to only detect collisions
   - [x] Create Fryer
-  - [ ] Create Holding Area / Countertop
+  - [x] Create Holding Area / Countertop **SCRAPPED**
   - [x] Create Heated counter top
   - [x] Create Knife
   - [x] Create Blender
   - [x] Create Oven
   - [x] Player can only one object
-  - [ ] Create Basic food
+  - [x] Create Basic food
   - [x] Create interactable to have skill checks
-  - [ ] Order list
-  - [ ] Create UI Layer
+  - [x] Order list **SCRAPPED**
+  - [x] Create UI Layer
 - [ ] Goal 3: Finalize game and add content (images)
   - [ ] Add images
   - [ ] Add Animations

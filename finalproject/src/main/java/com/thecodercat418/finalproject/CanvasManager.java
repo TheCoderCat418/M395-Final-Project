@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class CanvasManager {
     public Canvas canvas;
@@ -14,9 +15,10 @@ public class CanvasManager {
 
     public ArrayList<Sprite> sprites = new ArrayList<>();
 
-    public Image trash = new Image("trash-can-recycle-bin-icon-free-png-3578756803.png");
+    public Image trash;
 
     public CanvasManager(Canvas canvas) {
+        trash = new Image("trash-can-recycle-bin-icon-free-png-3578756803.png");
         for (int i = 0; i < 20; i++) {
             layers.add(new ArrayList<Sprite>());
         }
@@ -49,37 +51,49 @@ public class CanvasManager {
             }
         }
 
-    } 
+    }
 
-    private void drawSprite(Sprite s){
-        if(s instanceof Player){
-            if(((Player) (s)).held != null && ((Player) (s)).held.image != null){
+    private void drawSprite(Sprite s) {
+        if (s instanceof Player) {
+            if (((Player) (s)).held != null && ((Player) (s)).held.image != null) {
                 gc.drawImage(((Player) (s)).held.image, s.pos.x, s.pos.y, s.size.x, s.size.y);
-            }else{
-                gc.drawImage(new Image("illustration-of-no-image-available-icon-template-for-no-image-or-picture-coming-soon-free-vector-1969102132.jpg", 0.0, 0.0, true, true), s.pos.x, s.pos.y, s.size.x, s.size.y);
-            
+            } else {
+                gc.drawImage(new Image(
+                        "illustration-of-no-image-available-icon-template-for-no-image-or-picture-coming-soon-free-vector-1969102132.jpg",
+                        0.0, 0.0, true, true), s.pos.x, s.pos.y, s.size.x, s.size.y);
+
             }
-        }else if(s instanceof FoodGiver){
+        } else if (s instanceof FoodGiver) {
             gc.drawImage(((FoodGiver) (s)).toGive.image, s.pos.x, s.pos.y, s.size.x, s.size.y);
-            
-        }else if(s instanceof FoodTranslator){
+
+        } else if (s instanceof FoodTranslator) {
             int yoff = 0;
-            for(Food f : ((FoodTranslator)(s)).holdingFood){
-                gc.drawImage(f.image, s.pos.x, s.pos.y+yoff, s.size.x, s.size.y/((FoodTranslator)(s)).r.inputs.size());
-                yoff += s.size.y/((FoodTranslator)(s)).r.inputs.size();
+            for (Food f : ((FoodTranslator) (s)).holdingFood) {
+                gc.drawImage(f.image, s.pos.x, s.pos.y + yoff, s.size.x,
+                        s.size.y / ((FoodTranslator) (s)).r.inputs.size());
+                yoff += s.size.y / ((FoodTranslator) (s)).r.inputs.size();
             }
-        }else if(s instanceof TrashCan){
-           gc.drawImage(trash, s.pos.x, s.pos.y, s.size.x, s.size.y);
-        }else if(s instanceof Delivier){
+        } else if (s instanceof TrashCan) {
+            gc.drawImage(trash, s.pos.x, s.pos.y, s.size.x, s.size.y);
+        } else if (s instanceof Delivier) {
             gc.drawImage(((Delivier) (s)).needed.image, s.pos.x, s.pos.y, s.size.x, s.size.y);
-        }else{
-            gc.setFill(s.color);
-            gc.fillRect(s.pos.x, s.pos.y, s.size.x, s.size.y);
+        } else if (s instanceof Text) {
+            gc.setFont(((Text) (s)).f);
+            gc.setFill(((Text) (s)).c);
+            gc.fillText(((Text) (s)).text, s.pos.x, s.pos.y);
+
+        } else {
+            if (s.image == null) {
+                gc.setFill(s.color);
+                gc.fillRect(s.pos.x, s.pos.y, s.size.x, s.size.y);
+            } else {
+                gc.drawImage(s.image, s.pos.x, s.pos.y, s.size.x, s.size.y);
+            }
         }
         gc.strokeRect(s.pos.x, s.pos.y, s.size.x, s.size.y);
     }
 
-    private void findAndLoadChildren(Sprite s){
+    private void findAndLoadChildren(Sprite s) {
         for (Sprite sa : s.children) {
             drawSprite(sa);
             findAndLoadChildren(sa);
