@@ -4,7 +4,6 @@ public class TrashCan extends Interactable {
 
     public TrashCan(int x, int y, int layer, int xsize, int ysize, CanvasManager cm) {
         super(x, y, layer, xsize, ysize, cm);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

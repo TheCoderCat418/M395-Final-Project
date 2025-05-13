@@ -3,6 +3,7 @@ package com.thecodercat418.finalproject;
 import javafx.scene.paint.Color;
 
 public class SkillCheck extends Player { // SkillCheck Builder and displayer
+    // **SCRAPPED** DUE TO LOSS OF TIME/NOT ACTIVILY USED
 
     Posititon startTopLeft = new Posititon();
 

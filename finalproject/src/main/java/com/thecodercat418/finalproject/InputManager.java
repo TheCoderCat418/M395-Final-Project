@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 
-public class InputManager { // TODO: EEEEEE
+public class InputManager {
     private static ArrayList<OnAction> pressed = new ArrayList<>();
     private static ArrayList<OnAction> released = new ArrayList<>();
     private static ArrayList<OnAction> typed = new ArrayList<>();

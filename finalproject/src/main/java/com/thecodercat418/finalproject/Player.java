@@ -2,6 +2,7 @@ package com.thecodercat418.finalproject;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 
 public class Player extends Sprite {
 
@@ -26,6 +27,21 @@ public class Player extends Sprite {
             }
             if (key.getCode().compareTo(KeyCode.DOWN) == 0) {
                 moveDown = true;
+            }
+            if (key.getCode().compareTo(KeyCode.P) == 0) {
+                
+                
+                if(Main.scoreBox.color.equals(new Color(0, 0, 0, 0.25))){
+                    Main.scoreBox.color = new Color(0, 0, 1, 0.25);
+                    Main.paused = true;
+                    
+                }else{
+                    Main.scoreBox.color = new Color(0, 0, 0, 0.25);
+                    Main.paused = false;
+                    if(Main.time <= 0){
+                        Main.time = 1;
+                    }
+                }
             }
             if (key.getCode().compareTo(KeyCode.E) == 0) {
                 // Search for colliding E accessable objects
@@ -75,7 +91,9 @@ public class Player extends Sprite {
         if (moveRight) {
             moveActive(Direction.RIGHT);
         }
+        if(Main.time >0){
         moveLoop();
+        }
 
     }
 }

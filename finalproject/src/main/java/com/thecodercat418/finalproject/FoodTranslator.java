@@ -9,7 +9,6 @@ public class FoodTranslator extends Interactable {
     public FoodTranslator(int x, int y, int layer, int xsize, int ysize, Recipe r, CanvasManager cm) {
         super(x, y, layer, xsize, ysize, cm);
         this.r = r;
-        // TODO Auto-generated constructor stub
     }
 
     Recipe r;
@@ -30,10 +29,11 @@ public class FoodTranslator extends Interactable {
         }
         for (Food f : r.inputs) {
             if (f.name.equals(((Player) (interactedSprite)).held.name)) {
-                for (Food foodAlready : holdingFood) {
+                for (Food foodAlready 
+                : holdingFood) {
                     if (foodAlready.name.equals(((Player) (interactedSprite)).held.name)) {
                         System.out.println("already has");
-                        return; // TODO ARELADY HAS FOOD
+                        return;
                     }
                 }
                 System.out.println("added to ft");
@@ -42,7 +42,6 @@ public class FoodTranslator extends Interactable {
                 break;
             }
         }
-        
 
         for (Food f : r.inputs) {
             boolean a = false;
@@ -51,14 +50,14 @@ public class FoodTranslator extends Interactable {
                     a = true;
                 }
             }
-            if(!a){
+            if (!a) {
                 return;
             }
 
         }
 
-            holdingFood.clear();
-            holdingFood.add(r.output);
+        holdingFood.clear();
+        holdingFood.add(r.output);
 
     }
 

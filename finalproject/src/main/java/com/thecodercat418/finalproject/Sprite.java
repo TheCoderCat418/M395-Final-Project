@@ -48,7 +48,7 @@ public abstract class Sprite {
     }
 
     void moveLoop() {
-        //System.out.println(velo.x + " " + velo.y);
+        // System.out.println(velo.x + " " + velo.y);
         if (velo.x == 0 && velo.y == 0) {
             return;
         }
@@ -118,7 +118,7 @@ public abstract class Sprite {
         affectedxColl = false;
         affectedyColl = false;
         ArrayList<Sprite> newColSprites = new ArrayList<>();
-        for (Sprite sa : canvasManager.sprites) { // TODO: INDEPENDANT PARTY TO HANDLE COLLISIONS
+        for (Sprite sa : canvasManager.sprites) { 
             // Collisions
             // Compute Collision
 
@@ -170,8 +170,10 @@ public abstract class Sprite {
                     newColSprites.add(sa);
 
                     // You can also return the side of the collision if needed
-                    //System.out.println("Collision detected on side: " + (minOverlap == overlapLeft ? "RIGHT"
-                    //        : minOverlap == overlapRight ? "LEFT" : minOverlap == overlapTop ? "DOWN" : "UP"));
+                    // System.out.println("Collision detected on side: " + (minOverlap ==
+                    // overlapLeft ? "RIGHT"
+                    // : minOverlap == overlapRight ? "LEFT" : minOverlap == overlapTop ? "DOWN" :
+                    // "UP"));
 
                 }
                 // colSprites -> Sprites currently colliding since last check
