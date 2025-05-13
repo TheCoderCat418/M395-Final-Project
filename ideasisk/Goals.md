@@ -19,10 +19,10 @@
   - [x] Order list **SCRAPPED**
   - [x] Create UI Layer
 - [ ] Goal 3: Finalize game and add content (images)
-  - [ ] Add images
+  - [x] Add images
   - [ ] Add Animations
-  - [ ] Add Timer
-  - [ ] Add Score
+  - [x] Add Timer
+  - [x] Add Score
   - [ ] Add Levels
   - [ ] Add Sound
 - [ ] Goal 4: Local Multiplayer (same keyboard)
