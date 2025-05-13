@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
         // Cross-Class Communication
-        public static int time = 10;
+        public static int time = 240;
         public static boolean paused = false;
         public static int score = 0;
         public static Rectangle scoreBox = null;
